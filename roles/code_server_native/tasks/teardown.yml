@@ -1,0 +1,6 @@
+---
+- name: Delete DNS specific information
+  ansible.builtin.include_tasks: "{{ item }}"
+  with_first_found:
+    - "{{ role_path }}/tasks/dns/{{ dns_type }}.yml"
+    - "{{ role_path }}/tasks/dns/none.yml"

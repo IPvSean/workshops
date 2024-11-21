@@ -3,12 +3,19 @@ controller_hosts:
   - name: "backup-server"
     description: "this server is where we backup network configuration"
     inventory: "Workshop Inventory"
+    enabled: true
     variables:
       note: in production these passwords would be encrypted in vault
       ansible_user: "ec2-user"
       ansible_password: "{{ admin_password }}"
       ansible_host: "{{ ansible_host }}"
-controller_organizations:
+  - name: "ansible-1"
+    description: "control node where AAP is running"
+    inventory: "Workshop Inventory"
+    enabled: true
+    variables:
+      ansible_user: "ec2-user"
+aap_organizations:
   - name: "Red Hat network organization"
     description: "Red Hat Network Organization"
     galaxy_credentials:
@@ -17,7 +24,7 @@ controller_organizations:
     description: "Red Hat Compute Organization"
     galaxy_credentials:
       - "Ansible Galaxy"
-controller_teams:
+aap_teams:
   - name: "Netops"
     description: "Network Ops Team"
     organization: "Red Hat network organization"
@@ -30,41 +37,41 @@ controller_teams:
   - name: "Compute T2"
     description: "Computer T2 Team"
     organization: "Red Hat compute organization"
-controller_user_accounts:
-  - user: network-operator
+aap_user_accounts:
+  - username: network-operator
     is_superuser: false
     password: "{{ admin_password }}"
     email: nwops@redhat.com
     first_name: Issac
     last_name: Assimov
-  - user: network-admin
+  - username: network-admin
     is_superuser: false
     password: "{{ admin_password }}"
     email: nwadmin@redhat.com
     first_name: Larry
     last_name: Niven
-  - user: bbelcher
+  - username: bbelcher
     is_superuser: true
     password: "{{ admin_password }}"
     email: bbelcher@redhat.com
     first_name: Bob
     last_name: Belcher
-  - user: tbelcher
+  - username: tbelcher
     password: "{{ admin_password }}"
     email: tbelcher@redhat.com
     first_name: Tina
     last_name: Belcher
-  - user: lbelcher
+  - username: lbelcher
     password: "{{ admin_password }}"
     email: lbelcher@redhat.com
     first_name: Louise
     last_name: Belcher
-  - user: libelcher
+  - username: libelcher
     password: "{{ admin_password }}"
     email: libelcher@redhat.com
     first_name: Linda
     last_name: Belcher
-  - user: gbelcher
+  - username: gbelcher
     password: "{{ admin_password }}"
     email: gbelcher@redhat.com
     first_name: Gene
@@ -74,7 +81,7 @@ controller_projects:
     organization: "Red Hat network organization"
     scm_type: git
     scm_url: "https://github.com/network-automation/toolkit"
-controller_roles:
+gateway_role_user_assignments:
   - user: network-admin
     organization: "Red Hat network organization"
     role: member
@@ -152,3 +159,21 @@ controller_templates:
     survey_enabled: true
     survey: "{{ lookup('template', 'system.json') }}"
     execution_environment: "network workshop execution environment"
+controller_groups:
+  - name: cisco
+    inventory: "Workshop Inventory"
+    variables:
+      ansible_network_os: ios
+      ansible_connection: network_cli
+  - name: arista
+    inventory: "Workshop Inventory"
+    variables:
+      ansible_network_os: eos
+      ansible_connection: network_cli
+      ansible_become: true
+      ansible_become_method: enable
+  - name: juniper
+    inventory: "Workshop Inventory"
+    variables:
+      ansible_network_os: junos
+      ansible_connection: netconf

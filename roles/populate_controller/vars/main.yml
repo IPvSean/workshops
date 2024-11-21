@@ -1,0 +1,7 @@
+aap_validate_certs: false
+aap_hostname: "https://{{ ansible_host }}:{{ aap_port | default('443') }}"
+aap_username: "admin"
+aap_password: "{{ admin_password }}"
+aap_request_timeout: "200"
+aap_configuration_projects_async_retries: "90"
+controller_configuration_projects_async_delay: 5

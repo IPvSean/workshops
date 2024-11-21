@@ -50,12 +50,13 @@ Having said that, the exercises themselves should take roughly 4-5 hours. The fi
 * [Exercise 1.4 - Using Variables](1.4-variables)
 * [Exercise 1.5 - Conditionals, Handlers and Loops](1.5-handlers)
 * [Exercise 1.6 - Templates](1.6-templates)
-* [Exercise 1.7 - Roles](1.7-role)
+* [Exercise 1.7 - Collections](1.7-collection)
+* [Exercise 1.8 - Debugging and Error Handling](1.8-troubleshoot)
 
 ## Section 2 - Ansible Automation Platform Exercises
 
-* [Exercise 2.1 - Introduction to automation controller](2.1-intro)
-* [Exercise 2.2 - Inventories, credentials and ad hoc commands](2.2-cred)
+* [Exercise 2.1 - Introduction to Ansible automation controller](2.1-intro)
+* [Exercise 2.2 - Inventories and Credentials in Ansible Automation Controller](2.2-cred)
 * [Exercise 2.3 - Projects & job templates](2.3-projects)
 * [Exercise 2.4 - Surveys](2.4-surveys)
 * [Exercise 2.5 - Role based access control](2.5-rbac)
